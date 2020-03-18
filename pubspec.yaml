@@ -1,6 +1,6 @@
 name: focus_detector
-description: Wrapper around Google's [VisibilityDetector](https://github.com/google/flutter.widgets/tree/master/packages/visibility_detector) for combining it with Flutter's WidgetsBindingObserver in order to achieve Android's onResume/onPause and iOS's viewDidAppear/viewDidDisappear on Flutter.
-version: 0.0.1
+description: Android's onResume/onPause and iOS's viewDidAppear/viewDidDisappear for Flutter.
+version: 1.0.0
 homepage: https://edsonbueno.com
 
 environment:
