@@ -1,3 +1,6 @@
+## [1.0.1] - 03/18/2020
+- Simplified demo project.
+
 ## [1.0.0] - 03/18/2020
 - Added demo project.
 
