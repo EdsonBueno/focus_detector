@@ -1,4 +1,4 @@
-library focusdetector;
+library focus_detector;
 
 import 'dart:io';
 

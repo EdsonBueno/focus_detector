@@ -1,7 +1,7 @@
 name: focus_detector
 description: Android's onResume/onPause and iOS's viewDidAppear/viewDidDisappear for Flutter.
 version: 1.0.0
-homepage: https://edsonbueno.com
+homepage: https://github.com/EdsonBueno/focus_detector
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

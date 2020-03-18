@@ -1,4 +1,4 @@
-name: focusdetectorexample
+name: focus_detector_example
 description: An example for FocusDetector.
 
 # The following defines the version and build number for your application.
@@ -23,8 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: 0.12.0+4
-  fluro: 1.5.1
   focus_detector:
     path: ../
 
