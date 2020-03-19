@@ -13,7 +13,7 @@ Some cases that trigger the focus change:
 3. When the app is sent to background/foreground while the widget was visible;
 
 ## Article
-[https://edsonbueno.com](https://edsonbueno.com)
+[Bringing onResume/viewDidAppear onPause/viewDidDisappear to Flutter](https://edsonbueno.com/2020/03/19/bringing-on-resume-view-did-appear-to-flutter/)
 
 ## Sample
 Check out the `set-state-focus-detector` or `bloc-focus-detector` branch of the [Breaking Bapp repository](https://github.com/EdsonBueno/breaking_bapp).
