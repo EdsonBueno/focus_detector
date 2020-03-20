@@ -8,7 +8,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final resumeDetectorKey = UniqueKey();
+  final _resumeDetectorKey = UniqueKey();
+
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'FocusDetector Example',
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         home: FocusDetector(
-          key: resumeDetectorKey,
+          key: _resumeDetectorKey,
           child: Scaffold(
             appBar: AppBar(
               title: Text('FocusDetector Example'),

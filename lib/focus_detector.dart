@@ -1,7 +1,5 @@
 library focus_detector;
 
-import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -77,19 +75,13 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void initState() {
-    // We only need the WidgetsBindingObserver strategy on Android. The
-    // [VisibilityDetector] is enough on iOS.
-    if (Platform.isAndroid) {
-      WidgetsBinding.instance.addObserver(this);
-    }
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
   @override
   void dispose() {
-    if (Platform.isAndroid) {
-      WidgetsBinding.instance.removeObserver(this);
-    }
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 }
