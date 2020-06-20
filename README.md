@@ -10,10 +10,10 @@ A FocusDetector widget takes in a child and optional `onFocusGained`/`onFocusLos
 Some cases that trigger the focus change:
 1. When the widget is first created;
 2. When its route is popped back to;
-3. When the app is sent to background/foreground while the widget was visible;
+3. When the app is sent to background/foreground while the widget is visible;
 
 ## Article
 [Bringing onResume/viewDidAppear onPause/viewDidDisappear to Flutter](https://edsonbueno.com/2020/03/19/bringing-on-resume-view-did-appear-to-flutter/)
 
 ## Sample
-Check out the `set-state-focus-detector` or `bloc-focus-detector` branch of the [Breaking Bapp repository](https://github.com/EdsonBueno/breaking_bapp).
+Check out the `focus-detector/set-state-focus-detector` or `focus-detector/bloc-focus-detector` branch of the [Breaking Bapp repository](https://github.com/EdsonBueno/breaking_bapp).

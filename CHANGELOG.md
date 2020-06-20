@@ -1,3 +1,6 @@
+## [1.0.3] - 06/20/2020
+- Upgrade dependencies.
+
 ## [1.0.2] - 03/20/2020
 - Fix background/foreground transition on iOS.
 
