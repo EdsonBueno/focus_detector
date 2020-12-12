@@ -3,30 +3,36 @@ library focus_detector;
 import 'package:flutter/widgets.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-/// Wrapper around Google's VisibilityDetector
-/// for combining it with Flutter's WidgetsBindingObserver in order to achieve
-/// Android's onResume/onPause and iOS's viewDidAppear/viewDidDisappear on
-/// Flutter.
 class FocusDetector extends StatefulWidget {
-  /// Constructor.
-  ///
-  ///
-  /// `key` is required to properly identify this widget; it must be unique
-  /// among all [FocusDetector] widgets.
   const FocusDetector({
-    @required Key key,
     @required this.child,
     this.onFocusGained,
     this.onFocusLost,
-  })  : assert(key != null),
-        assert(child != null),
+    this.onVisibilityGained,
+    this.onVisibilityLost,
+    this.onForegroundGained,
+    this.onForegroundLost,
+    Key key,
+  })  : assert(child != null),
         super(key: key);
 
-  /// Called when the focus is obtained.
+  /// Called when the widget becomes visible or enters foreground while visible.
   final VoidCallback onFocusGained;
 
-  /// Called when the focus is lost.
+  /// Called when the widget becomes invisible or enters background while visible.
   final VoidCallback onFocusLost;
+
+  /// Called when the widget becomes visible.
+  final VoidCallback onVisibilityGained;
+
+  /// Called when the widget becomes invisible.
+  final VoidCallback onVisibilityLost;
+
+  /// Called when the app entered the foreground while the widget is visible.
+  final VoidCallback onForegroundGained;
+
+  /// Called when the app is sent to background while the widget was visible.
+  final VoidCallback onForegroundLost;
 
   final Widget child;
 
@@ -36,47 +42,92 @@ class FocusDetector extends StatefulWidget {
 
 class _FocusDetectorState extends State<FocusDetector>
     with WidgetsBindingObserver {
+  final _visibilityDetectorKey = UniqueKey();
   bool _isVisible = false;
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // It only makes sense to report the focus change when the app's lifecycle
-    // state changes while this Widget was visible.
-    if (state == AppLifecycleState.resumed &&
-        _isVisible &&
-        widget.onFocusGained != null) {
-      widget.onFocusGained();
-    }
-
-    if (state == AppLifecycleState.paused &&
-        _isVisible &&
-        widget.onFocusLost != null) {
-      widget.onFocusLost();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) => VisibilityDetector(
-        key: widget.key,
-        onVisibilityChanged: (visibilityInfo) {
-          // In order to know if we're visible or not, we just need to make
-          // sure that our visible fraction is greater than zero.
-          _isVisible = visibilityInfo.visibleFraction > 0;
-          if (_isVisible && widget.onFocusGained != null) {
-            widget.onFocusGained();
-          }
-
-          if (!_isVisible && widget.onFocusLost != null) {
-            widget.onFocusLost();
-          }
-        },
-        child: widget.child,
-      );
 
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final isAppResumed = state == AppLifecycleState.resumed;
+    if (isAppResumed && _isVisible) {
+      _notifyFocusGain();
+      _notifyForegroundGain();
+      return;
+    }
+
+    final isAppPaused = state == AppLifecycleState.paused;
+    if (isAppPaused && _isVisible) {
+      _notifyFocusLoss();
+      _notifyForegroundLoss();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => VisibilityDetector(
+        key: _visibilityDetectorKey,
+        onVisibilityChanged: (visibilityInfo) {
+          final visibleFraction = visibilityInfo.visibleFraction;
+          _changeVisibilityStatus(visibleFraction);
+        },
+        child: widget.child,
+      );
+
+  void _changeVisibilityStatus(double newVisibleFraction) {
+    final wasFullyVisible = _isVisible;
+    final isFullyVisible = newVisibleFraction == 1;
+    if (!wasFullyVisible && isFullyVisible) {
+      _isVisible = true;
+      _notifyFocusGain();
+      _notifyVisibilityGain();
+    }
+
+    final isFullyInvisible = newVisibleFraction == 0;
+    if (wasFullyVisible && isFullyInvisible) {
+      _isVisible = false;
+      _notifyFocusLoss();
+      _notifyVisibilityLoss();
+    }
+  }
+
+  void _notifyFocusGain() {
+    if (widget.onFocusGained != null) {
+      widget.onFocusGained();
+    }
+  }
+
+  void _notifyFocusLoss() {
+    if (widget.onFocusLost != null) {
+      widget.onFocusLost();
+    }
+  }
+
+  void _notifyVisibilityGain() {
+    if (widget.onVisibilityGained != null) {
+      widget.onVisibilityGained();
+    }
+  }
+
+  void _notifyVisibilityLoss() {
+    if (widget.onVisibilityLost != null) {
+      widget.onVisibilityLost();
+    }
+  }
+
+  void _notifyForegroundGain() {
+    if (widget.onForegroundGained != null) {
+      widget.onForegroundGained();
+    }
+  }
+
+  void _notifyForegroundLoss() {
+    if (widget.onForegroundLost != null) {
+      widget.onForegroundLost();
+    }
   }
 
   @override
