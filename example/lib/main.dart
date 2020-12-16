@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         onFocusLost: () {
           logger.i(
             'Focus Lost.'
-            '\nTriggers when either [onVisibilityLost] or [onForegroundLost] '
+            '\nTriggered when either [onVisibilityLost] or [onForegroundLost] '
             'is called.'
             '\nEquivalent to onPause() on Android or viewDidDisappear() on iOS.',
           );
@@ -43,14 +43,14 @@ class MyApp extends StatelessWidget {
         onVisibilityGained: () {
           logger.i(
             'Visibility Gained.'
-            '\nIt means the widget is visible within your app.',
+            '\nIt means the widget is now visible within your app.',
           );
         },
         onForegroundLost: () {
           logger.i(
             'Foreground Lost.'
             '\nIt means, for example, that the user sent your app to the '
-            'background by opening another app or turning off the device\'s '
+            'background by opening another app or turned off the device\'s '
             'screen while your widget was visible.',
           );
         },

@@ -17,10 +17,10 @@ Get notified every time your widget appears or disappears from the screen.
 Similar to `onResume()`/`onPause()` on Android and `viewDidAppear()`/`viewDidDisappear()` on iOS.
 
 Focus Detector fires callbacks for you whenever something happens to take or give your widget focus. Such an event might be, for instance, the user:
-- Navigating to or from another screen;
-- Turning the device’s screen on or off while your widget is visible;
-- Switching to or from another app while your widget is visible;
-- Scrolling your widget in or out the screen;
+- Navigating to/from another screen;
+- Turning the device’s screen on/off while your widget is visible;
+- Switching to/from another app while your widget is visible;
+- Scrolling your widget in/out the screen;
 
 ## Usage
 
@@ -31,7 +31,7 @@ Widget build(BuildContext context) =>
       onFocusLost: () {
         logger.i(
           'Focus Lost.'
-          '\nTriggers when either [onVisibilityLost] or [onForegroundLost] '
+          '\nTriggered when either [onVisibilityLost] or [onForegroundLost] '
           'is called.'
           '\nEquivalent to onPause() on Android or viewDidDisappear() on iOS.',
         );
@@ -53,14 +53,14 @@ Widget build(BuildContext context) =>
       onVisibilityGained: () {
         logger.i(
           'Visibility Gained.'
-          '\nIt means the widget is visible within your app.',
+          '\nIt means the widget is now visible within your app.',
         );
       },
       onForegroundLost: () {
         logger.i(
           'Foreground Lost.'
           '\nIt means, for example, that the user sent your app to the background by opening '
-          'another app or turning off the device\'s screen while your '
+          'another app or turned off the device\'s screen while your '
           'widget was visible.',
         );
       },
@@ -82,4 +82,4 @@ Widget build(BuildContext context) =>
 - Pause and resume video/audio playback or streaming;
 
 ## Sample
-For a more complete sample, with more than one screen, please check out the `focus-detector/set-state-focus-detector` or `focus-detector/bloc-focus-detector` branches from the [Breaking Bapp repository](https://github.com/EdsonBueno/breaking_bapp).
+For a sample with more than one screen, please check out the `focus-detector/set-state-focus-detector` or `focus-detector/bloc-focus-detector` branches from the [Breaking Bapp repository](https://github.com/EdsonBueno/breaking_bapp).
