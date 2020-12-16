@@ -3,6 +3,7 @@ library focus_detector;
 import 'package:flutter/widgets.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+/// Fires callbacks every time the widget appears or disappears from the screen.
 class FocusDetector extends StatefulWidget {
   const FocusDetector({
     @required this.child,
@@ -44,6 +45,7 @@ class _FocusDetectorState extends State<FocusDetector>
     with WidgetsBindingObserver {
   final _visibilityDetectorKey = UniqueKey();
   bool _isVisible = false;
+  bool _isAppResumed = true;
 
   @override
   void initState() {
@@ -53,15 +55,26 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    _changeAppResumedStatus(state);
+  }
+
+  void _changeAppResumedStatus(AppLifecycleState state) {
+    if (!_isVisible) {
+      return;
+    }
+
     final isAppResumed = state == AppLifecycleState.resumed;
-    if (isAppResumed && _isVisible) {
+    final wasResumed = _isAppResumed;
+    if (isAppResumed && !wasResumed) {
+      _isAppResumed = true;
       _notifyFocusGain();
       _notifyForegroundGain();
       return;
     }
 
     final isAppPaused = state == AppLifecycleState.paused;
-    if (isAppPaused && _isVisible) {
+    if (isAppPaused && wasResumed) {
+      _isAppResumed = false;
       _notifyFocusLoss();
       _notifyForegroundLoss();
     }
@@ -78,6 +91,10 @@ class _FocusDetectorState extends State<FocusDetector>
       );
 
   void _changeVisibilityStatus(double newVisibleFraction) {
+    if (!_isAppResumed) {
+      return;
+    }
+
     final wasFullyVisible = _isVisible;
     final isFullyVisible = newVisibleFraction == 1;
     if (!wasFullyVisible && isFullyVisible) {

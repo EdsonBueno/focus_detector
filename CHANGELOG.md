@@ -1,14 +1,24 @@
-## [1.0.3] - 06/20/2020
-- Upgrade dependencies.
+## 1.1.0
 
-## [1.0.2] - 03/20/2020
-- Fix background/foreground transition on iOS.
+* Adds [onVisibilityGained()](https://pub.dev/documentation/focus_detector/latest/focus_detector/FocusDetector/onVisibilityGained.html), [onVisibilityLost()](https://pub.dev/documentation/focus_detector/latest/focus_detector/FocusDetector/onVisibilityLost.html), [onForegroundGained()](https://pub.dev/documentation/focus_detector/latest/focus_detector/FocusDetector/onForegroundGained.html) and [onForegroundLost()](https://pub.dev/documentation/focus_detector/latest/focus_detector/FocusDetector/onForegroundLost.html) callbacks.
+* Fixes a bug in which callbacks were being fired multiple times when using pop gesture on iOS.
 
-## [1.0.1] - 03/18/2020
-- Simplified demo project.
+## 1.0.3
 
-## [1.0.0] - 03/18/2020
-- Added demo project.
+* Upgrades dependencies.
 
-## [0.0.1] - 03/18/2020
-- First release.
+## 1.0.2
+
+* Fixes background/foreground transition on iOS.
+
+## 1.0.1
+
+* Simplifies demo project.
+
+## 1.0.0
+
+* Adds demo project.
+
+## 0.0.1
+
+* First release.
