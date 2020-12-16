@@ -43,22 +43,22 @@ class MyApp extends StatelessWidget {
         onVisibilityGained: () {
           logger.i(
             'Visibility Gained.'
-            '\nIt means the widget is now visible within your app.',
+            '\nIt means the widget is visible within your app.',
           );
         },
         onForegroundLost: () {
           logger.i(
             'Foreground Lost.'
-            '\nIt means the user sent your app to the background by opening '
-            'another app or turning off the device\'s screen while your '
-            'widget was visible.',
+            '\nIt means, for example, that the user sent your app to the '
+            'background by opening another app or turning off the device\'s '
+            'screen while your widget was visible.',
           );
         },
         onForegroundGained: () {
           logger.i(
             'Foreground Gained.'
-            '\nIt means the user switched back to your app or turned the '
-            'device\'s screen back on while your widget is visible.',
+            '\nIt means, for example, that the user switched back to your app '
+            'or turned the device\'s screen back on while your widget was visible.',
           );
         },
         child: Container(),
