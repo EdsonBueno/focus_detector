@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/EdsonBueno/focus_detector/master/assets/logo.png" height="113" alt="Focus Detector Logo" />
+	<img src="https://raw.githubusercontent.com/EdsonBueno/focus_detector/master/assets/logo.png" height="80" alt="Focus Detector Logo" />
 </p>
 <p align="center">
 	<a href="https://pub.dev/packages/focus_detector"><img src="https://img.shields.io/pub/v/focus_detector.svg" alt="Pub.dev Badge"></a>
