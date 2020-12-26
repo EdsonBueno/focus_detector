@@ -1,5 +1,3 @@
-library focus_detector;
-
 import 'package:flutter/widgets.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -35,6 +33,7 @@ class FocusDetector extends StatefulWidget {
   /// Called when the app is sent to background while the widget was visible.
   final VoidCallback onForegroundLost;
 
+  /// The widget below this widget in the tree.
   final Widget child;
 
   @override
@@ -44,8 +43,12 @@ class FocusDetector extends StatefulWidget {
 class _FocusDetectorState extends State<FocusDetector>
     with WidgetsBindingObserver {
   final _visibilityDetectorKey = UniqueKey();
-  bool _isVisible = false;
-  bool _isAppResumed = true;
+
+  /// Whether this widget is currently visible within the app.
+  bool _isWidgetVisible = false;
+
+  /// Whether the app is in the foreground.
+  bool _isAppInForeground = true;
 
   @override
   void initState() {
@@ -55,18 +58,19 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    _changeAppResumedStatus(state);
+    _notifyPlaneTransition(state);
   }
 
-  void _changeAppResumedStatus(AppLifecycleState state) {
-    if (!_isVisible) {
+  /// Notifies app's transitions to/from the foreground.
+  void _notifyPlaneTransition(AppLifecycleState state) {
+    if (!_isWidgetVisible) {
       return;
     }
 
     final isAppResumed = state == AppLifecycleState.resumed;
-    final wasResumed = _isAppResumed;
+    final wasResumed = _isAppInForeground;
     if (isAppResumed && !wasResumed) {
-      _isAppResumed = true;
+      _isAppInForeground = true;
       _notifyFocusGain();
       _notifyForegroundGain();
       return;
@@ -74,7 +78,7 @@ class _FocusDetectorState extends State<FocusDetector>
 
     final isAppPaused = state == AppLifecycleState.paused;
     if (isAppPaused && wasResumed) {
-      _isAppResumed = false;
+      _isAppInForeground = false;
       _notifyFocusLoss();
       _notifyForegroundLoss();
     }
@@ -85,27 +89,28 @@ class _FocusDetectorState extends State<FocusDetector>
         key: _visibilityDetectorKey,
         onVisibilityChanged: (visibilityInfo) {
           final visibleFraction = visibilityInfo.visibleFraction;
-          _changeVisibilityStatus(visibleFraction);
+          _notifyVisibilityStatusChange(visibleFraction);
         },
         child: widget.child,
       );
 
-  void _changeVisibilityStatus(double newVisibleFraction) {
-    if (!_isAppResumed) {
+  /// Notifies changes in the widget's visibility.
+  void _notifyVisibilityStatusChange(double newVisibleFraction) {
+    if (!_isAppInForeground) {
       return;
     }
 
-    final wasFullyVisible = _isVisible;
+    final wasFullyVisible = _isWidgetVisible;
     final isFullyVisible = newVisibleFraction == 1;
     if (!wasFullyVisible && isFullyVisible) {
-      _isVisible = true;
+      _isWidgetVisible = true;
       _notifyFocusGain();
       _notifyVisibilityGain();
     }
 
     final isFullyInvisible = newVisibleFraction == 0;
     if (wasFullyVisible && isFullyInvisible) {
-      _isVisible = false;
+      _isWidgetVisible = false;
       _notifyFocusLoss();
       _notifyVisibilityLoss();
     }
