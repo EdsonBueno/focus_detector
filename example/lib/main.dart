@@ -2,20 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:logger/logger.dart';
 
-var logger = Logger(
-  printer: PrettyPrinter(
-    methodCount: 0,
-    printTime: false,
-  ),
-);
-
-void main() {
-  runApp(
-    MyApp(),
-  );
-}
-
-class MyApp extends StatelessWidget {
+class FocusDetectorExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) => FocusDetector(
         onFocusLost: () {
@@ -23,13 +10,15 @@ class MyApp extends StatelessWidget {
             'Focus Lost.'
             '\nTriggered when either [onVisibilityLost] or [onForegroundLost] '
             'is called.'
-            '\nEquivalent to onPause() on Android or viewDidDisappear() on iOS.',
+            '\nEquivalent to onPause() on Android or viewDidDisappear() on '
+            'iOS.',
           );
         },
         onFocusGained: () {
           logger.i(
             'Focus Gained.'
-            '\nTriggered when either [onVisibilityGained] or [onForegroundGained] '
+            '\nTriggered when either [onVisibilityGained] or '
+            '[onForegroundGained] '
             'is called.'
             '\nEquivalent to onResume() on Android or viewDidAppear() on iOS.',
           );
@@ -58,9 +47,77 @@ class MyApp extends StatelessWidget {
           logger.i(
             'Foreground Gained.'
             '\nIt means, for example, that the user switched back to your app '
-            'or turned the device\'s screen back on while your widget was visible.',
+            'or turned the device\'s screen back on while your widget was '
+            'visible.',
           );
         },
-        child: Container(),
+        child: Material(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Send the app to the background or push another page and '
+                  'watch the console.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    final route = MaterialPageRoute(
+                      builder: (_) => OtherPage(),
+                    );
+                    Navigator.of(context).push(route);
+                  },
+                  child: const Text(
+                    'PUSH ANOTHER PAGE',
+                    style: TextStyle(),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
       );
+}
+
+class OtherPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(),
+        body: const Padding(
+          padding: EdgeInsets.all(16),
+          child: Center(
+            child: Text(
+              'Look at the console and return to the first screen.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+      );
+}
+
+Logger logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 0,
+    printTime: false,
+  ),
+);
+
+void main() {
+  runApp(
+    MaterialApp(
+      home: FocusDetectorExample(),
+      theme: ThemeData(),
+    ),
+  );
 }
