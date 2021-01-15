@@ -1,3 +1,9 @@
+## 1.1.0+1
+
+* Improves example project.
+* Updates LICENSE file.
+* Increases documentation.
+
 ## 1.1.0
 
 * Adds [onVisibilityGained()](https://pub.dev/documentation/focus_detector/latest/focus_detector/FocusDetector/onVisibilityGained.html), [onVisibilityLost()](https://pub.dev/documentation/focus_detector/latest/focus_detector/FocusDetector/onVisibilityLost.html), [onForegroundGained()](https://pub.dev/documentation/focus_detector/latest/focus_detector/FocusDetector/onForegroundGained.html) and [onForegroundLost()](https://pub.dev/documentation/focus_detector/latest/focus_detector/FocusDetector/onForegroundLost.html) callbacks.
@@ -11,14 +17,10 @@
 
 * Fixes background/foreground transition on iOS.
 
-## 1.0.1
+## 1.0.0+1
 
-* Simplifies demo project.
+* Simplifies example project.
 
 ## 1.0.0
-
-* Adds demo project.
-
-## 0.0.1
 
 * First release.

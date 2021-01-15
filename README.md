@@ -80,6 +80,3 @@ Widget build(BuildContext context) =>
 - Turn on and off resource-consuming features, such as camera, location or bluetooth;
 - Sync your data with a remote API or local database;
 - Pause and resume video/audio playback or streaming;
-
-## Sample
-For a sample with more than one screen, please check out the `focus-detector/set-state-focus-detector` or `focus-detector/bloc-focus-detector` branches from the [Breaking Bapp repository](https://github.com/EdsonBueno/breaking_bapp).

@@ -77,7 +77,6 @@ class FocusDetectorExample extends StatelessWidget {
                   },
                   child: const Text(
                     'PUSH ANOTHER PAGE',
-                    style: TextStyle(),
                   ),
                 )
               ],
