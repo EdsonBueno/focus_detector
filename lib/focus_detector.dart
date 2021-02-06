@@ -4,34 +4,33 @@ import 'package:visibility_detector/visibility_detector.dart';
 /// Fires callbacks every time the widget appears or disappears from the screen.
 class FocusDetector extends StatefulWidget {
   const FocusDetector({
-    @required this.child,
+    required this.child,
     this.onFocusGained,
     this.onFocusLost,
     this.onVisibilityGained,
     this.onVisibilityLost,
     this.onForegroundGained,
     this.onForegroundLost,
-    Key key,
-  })  : assert(child != null),
-        super(key: key);
+    Key? key,
+  }) : super(key: key);
 
   /// Called when the widget becomes visible or enters foreground while visible.
-  final VoidCallback onFocusGained;
+  final VoidCallback? onFocusGained;
 
   /// Called when the widget becomes invisible or enters background while visible.
-  final VoidCallback onFocusLost;
+  final VoidCallback? onFocusLost;
 
   /// Called when the widget becomes visible.
-  final VoidCallback onVisibilityGained;
+  final VoidCallback? onVisibilityGained;
 
   /// Called when the widget becomes invisible.
-  final VoidCallback onVisibilityLost;
+  final VoidCallback? onVisibilityLost;
 
   /// Called when the app entered the foreground while the widget is visible.
-  final VoidCallback onForegroundGained;
+  final VoidCallback? onForegroundGained;
 
   /// Called when the app is sent to background while the widget was visible.
-  final VoidCallback onForegroundLost;
+  final VoidCallback? onForegroundLost;
 
   /// The widget below this widget in the tree.
   final Widget child;
@@ -52,7 +51,7 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
     super.initState();
   }
 
@@ -117,44 +116,50 @@ class _FocusDetectorState extends State<FocusDetector>
   }
 
   void _notifyFocusGain() {
-    if (widget.onFocusGained != null) {
-      widget.onFocusGained();
+    final onFocusGained = widget.onFocusGained;
+    if (onFocusGained != null) {
+      onFocusGained();
     }
   }
 
   void _notifyFocusLoss() {
-    if (widget.onFocusLost != null) {
-      widget.onFocusLost();
+    final onFocusLost = widget.onFocusLost;
+    if (onFocusLost != null) {
+      onFocusLost();
     }
   }
 
   void _notifyVisibilityGain() {
-    if (widget.onVisibilityGained != null) {
-      widget.onVisibilityGained();
+    final onVisibilityGained = widget.onVisibilityGained;
+    if (onVisibilityGained != null) {
+      onVisibilityGained();
     }
   }
 
   void _notifyVisibilityLoss() {
-    if (widget.onVisibilityLost != null) {
-      widget.onVisibilityLost();
+    final onVisibilityLost = widget.onVisibilityLost;
+    if (onVisibilityLost != null) {
+      onVisibilityLost();
     }
   }
 
   void _notifyForegroundGain() {
-    if (widget.onForegroundGained != null) {
-      widget.onForegroundGained();
+    final onForegroundGained = widget.onForegroundGained;
+    if (onForegroundGained != null) {
+      onForegroundGained();
     }
   }
 
   void _notifyForegroundLoss() {
-    if (widget.onForegroundLost != null) {
-      widget.onForegroundLost();
+    final onForegroundLost = widget.onForegroundLost;
+    if (onForegroundLost != null) {
+      onForegroundLost();
     }
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     super.dispose();
   }
 }

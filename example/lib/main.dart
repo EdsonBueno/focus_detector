@@ -73,7 +73,7 @@ class FocusDetectorExample extends StatelessWidget {
                     final route = MaterialPageRoute(
                       builder: (_) => OtherPage(),
                     );
-                    Navigator.of(context).push(route);
+                    Navigator.of(context)?.push(route);
                   },
                   child: const Text(
                     'PUSH ANOTHER PAGE',
