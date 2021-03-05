@@ -68,12 +68,12 @@ class FocusDetectorExample extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     final route = MaterialPageRoute(
                       builder: (_) => OtherPage(),
                     );
-                    Navigator.of(context)?.push(route);
+                    Navigator.of(context).push(route);
                   },
                   child: const Text(
                     'PUSH ANOTHER PAGE',
