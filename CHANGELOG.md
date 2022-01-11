@@ -1,3 +1,7 @@
+## 2.0.1
+
+* Bumps [visibility_detector](https://pub.dev/packages/visibility_detector) version to fix Flutter 2.8 builds.
+
 ## 2.0.0
 
 * Promotes null safety to stable release.
