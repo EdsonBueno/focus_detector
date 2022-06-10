@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-
 /// Fires callbacks every time the widget appears or disappears from the screen.
 class FocusDetector extends StatefulWidget {
   const FocusDetector({
@@ -39,8 +38,7 @@ class FocusDetector extends StatefulWidget {
   _FocusDetectorState createState() => _FocusDetectorState();
 }
 
-class _FocusDetectorState extends State<FocusDetector>
-    with WidgetsBindingObserver {
+class _FocusDetectorState extends State<FocusDetector> with WidgetsBindingObserver {
   final _visibilityDetectorKey = UniqueKey();
 
   /// Whether this widget is currently visible within the app.
@@ -51,7 +49,7 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void initState() {
-    WidgetsBinding.instance?.addObserver(this);
+    _ambiguate(WidgetsBinding.instance)?.addObserver(this);
     super.initState();
   }
 
@@ -159,7 +157,15 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    _ambiguate(WidgetsBinding.instance)?.removeObserver(this);
     super.dispose();
   }
+
+  /// This allows a value of type T or T?
+  /// to be treated as a value of type T?.
+  ///
+  /// We use this so that APIs that have become
+  /// non-nullable can still be used with `!` and `?`
+  /// to support older versions of the API as well.
+  T? _ambiguate<T>(T? value) => value;
 }
