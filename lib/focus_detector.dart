@@ -51,7 +51,7 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void initState() {
-    WidgetsBinding.instance?.addObserver(this);
+    _ambiguate(WidgetsBinding.instance)?.addObserver(this);
     super.initState();
   }
 
@@ -159,7 +159,15 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    _ambiguate(WidgetsBinding.instance)?.removeObserver(this);
     super.dispose();
   }
+
+  /// This allows a value of type T or T?
+  /// to be treated as a value of type T?.
+  ///
+  /// We use this so that APIs that have become
+  /// non-nullable can still be used with `!` and `?`
+  /// to support older versions of the API as well.
+  T? _ambiguate<T>(T? value) => value;
 }
