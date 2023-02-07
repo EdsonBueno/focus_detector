@@ -3,6 +3,8 @@ import 'package:focus_detector_v2/focus_detector_v2.dart';
 import 'package:logger/logger.dart';
 
 class FocusDetectorExample extends StatelessWidget {
+  const FocusDetectorExample({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => FocusDetector(
         onFocusLost: () {
@@ -71,7 +73,7 @@ class FocusDetectorExample extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     final route = MaterialPageRoute(
-                      builder: (_) => OtherPage(),
+                      builder: (_) => const OtherPage(),
                     );
                     Navigator.of(context).push(route);
                   },
@@ -87,6 +89,8 @@ class FocusDetectorExample extends StatelessWidget {
 }
 
 class OtherPage extends StatelessWidget {
+  const OtherPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(),
@@ -115,7 +119,7 @@ Logger logger = Logger(
 void main() {
   runApp(
     MaterialApp(
-      home: FocusDetectorExample(),
+      home: const FocusDetectorExample(),
       theme: ThemeData(),
     ),
   );
