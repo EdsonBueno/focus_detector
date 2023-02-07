@@ -1,3 +1,7 @@
+## 3.0.0+2
+
+- Update documentation.
+
 ## 3.0.0
 
 - Migrates to V2 using Flutter SDK 3.3.10.

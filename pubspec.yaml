@@ -1,6 +1,6 @@
 name: focus_detector_v2
 description: Detects when your widget appears or disappears from the screen.
-version: 3.0.0
+version: 3.0.0+2
 homepage: https://github.com/irfnyas/focus_detector
 
 environment:

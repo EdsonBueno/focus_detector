@@ -17,11 +17,11 @@ Get notified every time your widget appears or disappears from the screen.
 Similar to `onResume()`/`onPause()` on Android and `viewDidAppear()`/`viewDidDisappear()` on iOS.
 
 Focus Detector fires callbacks for you whenever something happens to take or give your widget focus. Such an event might be, for instance, the user:
+
 - Navigating to/from another screen;
 - Turning the device’s screen on/off while your widget is visible;
 - Switching to/from another app while your widget is visible;
 - Scrolling your widget in/out the screen;
-
 
 ## Usage
 
@@ -76,16 +76,16 @@ Widget build(BuildContext context) =>
     );
 ```
 
-
 ## Usage Scenarios
+
 - Turn on and off resource-consuming features, such as camera, location or bluetooth;
 - Sync your data with a remote API or local database;
 - Pause and resume video/audio playback or streaming;
 
-
 ## Migrating from the V1
+
 This is a forked version of [Focus Detector](https://github.com/EdsonBueno/focus_detector). It was not updated for more than a year, so I made the V2 for my personal projects. To migrate from the V1, update the pubspec.yml dependency from `focus_detector: ^2.0.1` to `focus_detector_v2: ^3.0.0` and adjust your import inside dart files.
 
-
 ## Contribution
-Contributions of any kind are welcome. Feel free to improve the library by creating a pull request, or opening an issue.
+
+Contributions of any kind are welcome. Feel free to improve the library by creating a pull request or opening an issue.
