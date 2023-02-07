@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:focus_detector/focus_detector.dart';
+import 'package:focus_detector_v2/focus_detector_v2.dart';
 import 'package:logger/logger.dart';
 
 class FocusDetectorExample extends StatelessWidget {
