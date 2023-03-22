@@ -51,6 +51,9 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void initState() {
+    /// override the default interval of 500ms for faster reaction
+    VisibilityDetectorController.instance.updateInterval = Duration.zero;
+
     WidgetsBinding.instance?.addObserver(this);
     super.initState();
   }
