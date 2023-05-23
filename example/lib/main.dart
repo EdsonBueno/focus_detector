@@ -53,6 +53,7 @@ class FocusDetectorExample extends StatelessWidget {
             'visible.',
           );
         },
+        isWidgetTest: false,
         child: Material(
           child: Padding(
             padding: const EdgeInsets.all(16),

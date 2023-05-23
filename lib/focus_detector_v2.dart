@@ -11,6 +11,7 @@ class FocusDetector extends StatefulWidget {
     this.onVisibilityLost,
     this.onForegroundGained,
     this.onForegroundLost,
+    this.isWidgetTest,
     Key? key,
   }) : super(key: key);
 
@@ -35,11 +36,14 @@ class FocusDetector extends StatefulWidget {
   /// The widget below this widget in the tree.
   final Widget child;
 
+  /// Set Visibility Detector Update Interval to Duration.zero.
+  final bool? isWidgetTest;
+
   @override
-  _FocusDetectorState createState() => _FocusDetectorState();
+  FocusDetectorState createState() => FocusDetectorState();
 }
 
-class _FocusDetectorState extends State<FocusDetector>
+class FocusDetectorState extends State<FocusDetector>
     with WidgetsBindingObserver {
   final _visibilityDetectorKey = UniqueKey();
 
@@ -51,6 +55,10 @@ class _FocusDetectorState extends State<FocusDetector>
 
   @override
   void initState() {
+    if (widget.isWidgetTest == true) {
+      VisibilityDetectorController.instance.updateInterval = Duration.zero;
+    }
+
     WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
