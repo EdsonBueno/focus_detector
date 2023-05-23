@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.1.0
+## 3.1.0+1
 
 - Added `isWidgetTest` to set visibility detector instance update interval to `Duration.zero`.
 - Added `flutter_lints` in dev dependecies.
