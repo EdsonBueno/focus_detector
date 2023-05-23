@@ -72,6 +72,7 @@ Widget build(BuildContext context) =>
           'device\'s screen back on while your widget was visible.',
         );
       },
+      isWidgetTest: false,
       child: Container(),
     );
 ```
@@ -82,9 +83,9 @@ Widget build(BuildContext context) =>
 - Sync your data with a remote API or local database;
 - Pause and resume video/audio playback or streaming;
 
-## Migrating from the V1
+## Migrating from 'focus_detector'
 
-This is a forked version of [Focus Detector](https://github.com/EdsonBueno/focus_detector). It was not updated for more than a year, so I made the V2 for my personal projects. To migrate from the V1, update the pubspec.yml dependency from `focus_detector: ^2.0.1` to `focus_detector_v2: ^3.0.0` and adjust your import inside dart files.
+This is a forked version of [Focus Detector](https://github.com/EdsonBueno/focus_detector). It was not updated for more than a year, so I made the V2 for my personal projects. To migrate from the V1, update the pubspec.yml dependency from `focus_detector: ^2.0.1` to `focus_detector_v2: ^3.1.0` and adjust your import inside dart files.
 
 ## Contribution
 
